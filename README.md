@@ -41,9 +41,9 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 	```
 
 2. File **includes\ucp\ucp_register.php**
-  1. Find **global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;**
-  2. Replace to **global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;**
-  3. Find **// Check and initialize some variables if needed**
+  1. Find *global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;*
+  2. Replace to *global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;*
+  3. Find *// Check and initialize some variables if needed*
   4. Insert before
 
 		```ruby
@@ -62,8 +62,8 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 		extract($phpbb_dispatcher->trigger_event('core.ucp_prefs_register_data', compact($vars)));
 		```
 
-3. File phpbb\captcha\plugins\qa.php  replace to qa_replace/qa.php
-  1. Don't copy 'qa-replace' directory to /ext/borisba/registerlog !
+3. File **phpbb\captcha\plugins\qa.php** replace to **qa_replace/qa.php**
+  1. Don't copy *qa-replace* directory to */ext/borisba/registerlog* !
 
 ## Quick Install
 You can install this on the latest copy of the develop branch ([phpBB 3.1.1](https://github.com/phpbb/phpbb3)) by following the steps below:

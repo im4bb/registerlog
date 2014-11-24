@@ -6,8 +6,8 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 
 ## Before Install
 
-1. File includes\acp\info\acp_logs.php
-  1. Find function module() { ... }
+1. File **includes\acp\info\acp_logs.php**
+  1. Find *function module() { ... }*
   2. Replace it to
 	
 	```ruby
@@ -40,10 +40,10 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 	}
 	```
 
-2. File includes\ucp\ucp_register.php
-  1. Find global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
-  2. Replace to global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
-  3. Find // Check and initialize some variables if needed
+2. File **includes\ucp\ucp_register.php**
+  1. Find **global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;**
+  2. Replace to **global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;**
+  3. Find **// Check and initialize some variables if needed**
   4. Insert before
 
 		```ruby

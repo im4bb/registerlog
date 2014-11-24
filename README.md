@@ -7,12 +7,11 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 ## Before Install
 
 1. File includes\acp\info\acp_logs.php
- * Find function module() { ... }
- * Replace it to:
+  1. Find function module() { ... }
+  2. Replace it to
 	
-	/**
-	**/
-	function module()
+	```ruby
+ 	function module()
 	{
 		global  $phpbb_dispatcher;
 		$modes = array(
@@ -39,13 +38,15 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 			'modes'		=> $modes,
 		);
 	}
+	```
 
 2. File includes\ucp\ucp_register.php
- * Find global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
- * Replace to global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
- * Find // Check and initialize some variables if needed
- * Insert before
+  1. Find global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
+  2. Replace to global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
+  3. Find // Check and initialize some variables if needed
+  4. Insert before
 
+		```ruby
 		/**
 		* Add code before they are assigned to the template or submitted
 		*
@@ -59,9 +60,10 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 		*/
 		$vars = array('submit', 'data');
 		extract($phpbb_dispatcher->trigger_event('core.ucp_prefs_register_data', compact($vars)));
+		```
 
 3. File phpbb\captcha\plugins\qa.php  replace to qa_replace/qa.php
-	Don't copy 'qa-replace' directory to /ext/borisba/registerlog !
+  1. Don't copy 'qa-replace' directory to /ext/borisba/registerlog !
 
 ## Quick Install
 You can install this on the latest copy of the develop branch ([phpBB 3.1.1](https://github.com/phpbb/phpbb3)) by following the steps below:

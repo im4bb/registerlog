@@ -7,9 +7,11 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 ## Before Install
 
 1. File includes\acp\info\acp_logs.php
- 1.1. Find function module() { ... }
- 1.2. Replace it to:
+ * Find function module() { ... }
+ * Replace it to:
 	
+	/**
+	**/
 	function module()
 	{
 		global  $phpbb_dispatcher;
@@ -39,10 +41,10 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 	}
 
 2. File includes\ucp\ucp_register.php
- 2.1. Find global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
- 2.2. Replace to global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
- 2.3. Find // Check and initialize some variables if needed
- 2.4. Insert before
+ * Find global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
+ * Replace to global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
+ * Find // Check and initialize some variables if needed
+ * Insert before
 
 		/**
 		* Add code before they are assigned to the template or submitted

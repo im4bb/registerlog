@@ -385,8 +385,13 @@ class qa
 		$trap = false;
 		$return_val = false;
 		$qa = $this;
-		
-		$vars = array('trap', 'qa', 'error', 'return_val');
+
+		$vars = array(
+			'trap',
+			'qa',
+			'error',
+			'return_val'
+		);
 		extract($phpbb_dispatcher->trigger_event('core.plugins_qa_validate', compact($vars)));
 		
 		if ($trap)

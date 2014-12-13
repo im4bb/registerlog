@@ -37,8 +37,7 @@ $lang = array_merge($lang, array(
 	'REGISTER_ENGLISH'		=> 'С British English мы не регистрируем!',
 	'REGISTER_ERROR'		=> 'Пользователь <b>%1s</b> не зарегистрирован: %1s.',
 	'REGISTER_WITHOUT_CONFIRM'	=> '%ls: попытка обхода ответа на вопрос текстового подтверждения!',
-	
-	'REGISTER_LOG_ENABLE'	=>  'Включить ведение логов регистрации',
-	
-));
 
+	'REGISTER_LOG_ENABLE'	=>  'Включить ведение логов регистрации',
+
+));

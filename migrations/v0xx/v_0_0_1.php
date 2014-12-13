@@ -19,10 +19,10 @@ class v_0_0_1 extends \phpbb\db\migration\migration
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
 		$this->db->sql_freeresult($result);
-		
+
 		return $row;
 	}
-	
+
 	public function effectively_installed()
 	{
 		return isset($this->config['registerlog_version']) && version_compare($this->config['registerlog_version'], '0.0.1', '>=');
@@ -60,14 +60,14 @@ class v_0_0_1 extends \phpbb\db\migration\migration
 					'module_auth'		=> 'acl_a_viewlogs',
 				))),
 			)),
-			
+
 			array('module.add', array('acp', 'ACP_FORUM_LOGS', array(
 					'module_basename'	=> 'acp_logs',
 					'module_langname'	=> 'ACP_REGISTER_LOGS',
 					'module_mode'		=> 'register',
 					'module_auth'		=> 'acl_a_viewlogs',
 			))),
-			
+
 			// Add permissions
 			array('permission.add', array('a_registerlog', true)),
 			array('permission.add', array('f_not_change_subject', false)),

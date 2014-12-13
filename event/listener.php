@@ -54,20 +54,20 @@ class listener implements EventSubscriberInterface
 	/** @var string */
 	protected $phpbb_root_path;
 	protected $php_ext;
-	
+
 	/*function put_log($line)
 	{
 		//printf("put_log\n");
 		//$root_path = 'c:/Inetpub/phpBB3.asc/';
       $log_file = $this->phpbb_root_path . 'cache/debug_register_logs.log';
- 
+
       $ff = @fopen($log_file, 'ab+');
       if ($ff !== false)
       {
          @fwrite($ff, $line . "\n");
       }
       @fclose($ff);
- 
+
 	}*/
 
 
@@ -171,9 +171,9 @@ class listener implements EventSubscriberInterface
 				$username = utf8_normalize_nfc(request_var('username', '', true));
 				add_log('register', 'REGISTER_TRACE', $username);
 			}
-		}	
+		}
 	}
-	
+
 	/*
 		* @event core.add_log
 		* @var	string	mode			Mode of the entry we log
@@ -186,7 +186,7 @@ class listener implements EventSubscriberInterface
 		*							database. If sql_ary[log_type] is not set,
 		*							we won't add the entry to the database.
 	*/
-	
+
 	public function add_type_register_log($event)
 	{
 		$mode = $event['mode'];
@@ -195,7 +195,7 @@ class listener implements EventSubscriberInterface
 		switch ($mode)
 		{
 			case 'register':
-			
+
 				$sql_ary += array(
 					'log_type'		=> LOG_REGISTER,
 					'log_data'		=> (!empty($additional_data)) ? serialize($additional_data) : '',
@@ -204,7 +204,7 @@ class listener implements EventSubscriberInterface
 			break;
 		}
 	}
-	
+
 	/**
 	* Allows to modify log data before we delete it from the database
 	*
@@ -232,7 +232,7 @@ class listener implements EventSubscriberInterface
 			$event['log_type'] = $log_type;
 		}
 	}
-	
+
 	/**
 	* Overwrite log type and limitations before we count and get the logs
 	*
@@ -263,24 +263,24 @@ class listener implements EventSubscriberInterface
 	{
 		$mode = $event['mode'];
 		$log_type = $event['log_type'];
-		
+
 		if ($mode == 'register')
 		{
 			$log_type = LOG_REGISTER;
 			$event['log_type'] = $log_type;
 		}
 	}
-	
+
 	/*
 	*/
-	
+
 	public function qa_validate($event)
 	{
 		global $db, $user;
 		$trap = $event['trap'];
 		$trap =  true;
 		$event['trap'] = $trap;
-		
+
 		$qa = $event['qa'];
 		$error = $event['error'];
 		$ret_val = $event['return_val'];
@@ -295,7 +295,7 @@ class listener implements EventSubscriberInterface
 			$event['error'] = $error;
 			return;
 		}
-		
+
 		if (!$qa->confirm_id)
 		{
 			$error = $user->lang['CONFIRM_QUESTION_WRONG'];
@@ -339,17 +339,16 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-
 	}
-	
+
 	/*
 	*/
-	
+
 	public function qa_answer($event)
 	{
 		$qa = $event['qa'];
 		$answer = $event['answer'];
-		
+
 // Register LOG  Start -->
 		if ($this->config['enable_register_log'])
 			add_log('register', 'REGISTER_TEXT_CONFIRM', $qa->question_text, $answer);

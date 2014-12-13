@@ -37,7 +37,7 @@ $lang = array_merge($lang, array(
 	'REGISTER_ENGLISH'		=> 'No British English!',
 	'REGISTER_ERROR'		=> 'User <b>%1s</b> did not registered: %1s.',
 	'REGISTER_WITHOUT_CONFIRM'	=> '%ls: tryng register without answering!',
-	
+
 	'REGISTER_LOG_ENABLE'	=>  'Enable registration logs',
-	
+
 ));

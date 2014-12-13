@@ -30,7 +30,7 @@ class registerlog_module
 			'title'	=> 'ACP_REGISTERLOG',
 			'vars'	=> array(
 				'legend1'			=> '',
-                'enable_register_log'	=> array('lang' => 'REGISTER_LOG_ENABLE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
+				'enable_register_log'	=> array('lang' => 'REGISTER_LOG_ENABLE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
 			),
 		);
 
@@ -72,7 +72,7 @@ class registerlog_module
 				$config->set($config_name, $config_value);
 			}
 		}
-		
+
 		if ($submit)
 		{
 			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));

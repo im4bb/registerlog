@@ -289,8 +289,10 @@ class listener implements EventSubscriberInterface
 		{
 			$error = $user->lang['CONFIRM_QUESTION_WRONG'];
 // Register LOG  Start -->
-		if ($this->config['enable_register_log'])
-			add_log('register', 'REGISTER_WITHOUT_CONFIRM', 'validate');
+			if ($this->config['enable_register_log'])
+			{
+				add_log('register', 'REGISTER_WITHOUT_CONFIRM', 'validate');
+			}
 //-->Register LOG  End
 			$event['error'] = $error;
 			return;
@@ -306,7 +308,9 @@ class listener implements EventSubscriberInterface
 			{
 	// Register LOG  Start -->
 				if ($this->config['enable_register_log'])
+				{
 					add_log('register', 'REGISTER_ENGLISH');
+				}
 	//-->Register LOG  End
 				$qa->solved = false;
 				$error = $user->lang['CONFIRM_QUESTION_ENGLISH'];
@@ -351,7 +355,9 @@ class listener implements EventSubscriberInterface
 
 // Register LOG  Start -->
 		if ($this->config['enable_register_log'])
+		{
 			add_log('register', 'REGISTER_TEXT_CONFIRM', $qa->question_text, $answer);
+		}
 //-->Register LOG  End
 	}
 

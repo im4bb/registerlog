@@ -316,14 +316,16 @@ class listener implements EventSubscriberInterface
 				$error = $user->lang['CONFIRM_QUESTION_ENGLISH'];
 			}
 			else
-			if ($qa->check_answer())
 			{
-				// $this->delete_code(); commented out to allow posting.php to repeat the question
-				$qa->solved = true;
-			}
-			else
-			{
-				$error = $user->lang['CONFIRM_QUESTION_WRONG'];
+				if ($qa->check_answer())
+				{
+					// $this->delete_code(); commented out to allow posting.php to repeat the question
+					$qa->solved = true;
+				}
+				else
+				{
+					$error = $user->lang['CONFIRM_QUESTION_WRONG'];
+				}
 			}
 		}
 

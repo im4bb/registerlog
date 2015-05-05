@@ -119,7 +119,7 @@ class listener implements EventSubscriberInterface
 		return array(
 			'core.user_setup'					=>	'load_language_on_setup',
 			'core.acp_log_add_new_mode'			=>  'add_register_log_info',
-			'core.ucp_prefs_register_data'		=>	'try_register_log',
+			'core.ucp_register_data_before'		=>	'try_register_log',
 			'core.add_log'						=>	'add_type_register_log',
 			'core.delete_log'					=>	'delete_type_register_log',
 			'core.get_logs_modify_type'			=>	'get_logs_register_log',
@@ -160,6 +160,15 @@ class listener implements EventSubscriberInterface
 		$event['modes'] = $modes;
 	}
 	/**
+	* Add UCP register data before they are assigned to the template or submitted
+	*
+	* To assign data to the template, use $template->assign_vars()
+	*
+	* @event core.ucp_register_data_before
+	* @var	bool	submit		Do we display the form only
+	*							or did the user press submit
+	* @var	array	data		Array with current ucp registration data
+	* @since 3.1.4-RC1
 	*/
 	public function try_register_log($event)
 	{

@@ -22,7 +22,7 @@
     "extra": {
         "display-name": "Registration Log",
         "soft-require": {
-		    "phpbb/phpbb": "3.1.*@dev"
+		    "phpbb/phpbb": "3.1.4"
         }
     }
 }

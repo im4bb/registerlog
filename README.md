@@ -47,7 +47,7 @@ This is the repository for the development of the phpBB RegisterLog Extension.
   1. Don't copy *qa-replace* directory to */ext/borisba/registerlog* !
 
 ## Quick Install
-You can install this on the latest copy of the develop branch ([phpBB 3.1.1](https://github.com/phpbb/phpbb3)) by following the steps below:
+You can install this on the latest copy of the develop branch ([phpBB 3.1.4](https://github.com/phpbb/phpbb3)) by following the steps below:
 
 1. [Download the latest release](https://github.com/BorisBerdichevski/RegisterLog).
 2. Unzip the downloaded release, and change the name of the folder to `registerlog`.

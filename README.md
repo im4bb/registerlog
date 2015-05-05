@@ -4,7 +4,10 @@ This is the repository for the development of the phpBB RegisterLog Extension.
 
 [![Build Status](https://travis-ci.org/borisba/registerlog.svg?branch=master)](https://travis-ci.org/borisba/registerlog)
 
+
 ## Before Install
+
+**Use phpBB 3.1.4**
 
 1. File **includes\acp\info\acp_logs.php**
   1. Find *function module() { ... }*

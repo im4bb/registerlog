@@ -39,5 +39,6 @@ $lang = array_merge($lang, array(
 	'REGISTER_WITHOUT_CONFIRM'	=> '%ls: tryng register without answering!',
 
 	'REGISTER_LOG_ENABLE'	=>  'Enable registration logs',
+	'CONFIRM_QUESTION_ENGLISH'  =>  'No British English!',
 
 ));

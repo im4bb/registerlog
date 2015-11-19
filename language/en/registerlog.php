@@ -41,4 +41,6 @@ $lang = array_merge($lang, array(
 	'REGISTER_LOG_ENABLE'	=>  'Enable registration logs',
 	'CONFIRM_QUESTION_ENGLISH'  =>  'No British English!',
 
+	'REGISTER_RUSSIAN_ONLY'	=>  'Запретить регистрацию без перехода на русский язык',
+	'REGISTER_RUSSIAN_ONLY_EXPLAIN'	=>  'Установите язык конференции по умолчанию British English, введите хотя бы один вопрос для этого языка. Боты не сумеют перевести панель на русский язык',
 ));

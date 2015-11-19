@@ -39,6 +39,9 @@ class v_0_0_1 extends \phpbb\db\migration\migration
 			// Add configs
 			array('config.add', array('enable_register_log', '0')),
 
+			// Add flag RUSSIAN ON:LY
+			array('config.add', array('enable_russian_only', '0')),
+
 			// Current version
 			array('config.add', array('registerlog_version', '0.0.1')),
 

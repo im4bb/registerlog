@@ -19,6 +19,7 @@ class newtopic_info
 			'version'	=> '0.0.1',
 			'modes'		=> array(
 				'config_registerlog'		=> array('title' => 'ACP_NTP_CONFIG', 'auth' => 'ext_borisba/registerlog && acl_a_registerlog', 'cat' => array('ACP_NTP_CONFIG')),
+				'config_russian_only'		=> array('title' => 'ACP_RUSSIAN_CONFIG', 'auth' => 'ext_borisba/registerlog && acl_a_registerlog', 'cat' => array('ACP_RUSSIAN_CONFIG')),
 			),
 		);
 	}

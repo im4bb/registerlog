@@ -31,6 +31,7 @@ class registerlog_module
 			'vars'	=> array(
 				'legend1'			=> '',
 				'enable_register_log'	=> array('lang' => 'REGISTER_LOG_ENABLE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
+				'enable_russian_only'	=> array('lang' => 'REGISTER_RUSSIAN_ONLY', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
 			),
 		);
 

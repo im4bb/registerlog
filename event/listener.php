@@ -313,7 +313,7 @@ class listener implements EventSubscriberInterface
 		}
 		else
 		{
-			if( $user->lang_name == 'en')
+			if( $this->config['enable_russian_only'] && $user->lang_name == 'en')
 			{
 	// Register LOG  Start -->
 				if ($this->config['enable_register_log'])

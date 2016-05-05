@@ -388,7 +388,7 @@ class qa
 	*/
 	function validate()
 	{
-		global $config, $db, $user, $phpbb_dispatcher;
+		global $phpbb_log, $config, $db, $user, $phpbb_dispatcher;
 		
 		/**
 		* Add custom validation code

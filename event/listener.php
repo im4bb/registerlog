@@ -177,7 +177,7 @@ class listener implements EventSubscriberInterface
 		{
 			if ($this->config['enable_register_log'])
 			{
-				$username = utf8_normalize_nfc(request_var('username', '', true));
+				$username = $this->request->variable('username', '', true);
 				add_log('register', 'REGISTER_TRACE', $username);
 			}
 		}

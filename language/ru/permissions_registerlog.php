@@ -28,5 +28,5 @@ $lang = array_merge($lang, array(
 	'ACP_REGISTERLOG_EXPLAIN'	=> 'Ведение логов регистрации',
 
 	'ACL_A_REGISTERLOG'			=> 'Может изменять настройки',
-	'ACL_F_NOT_CHANGE_SUBJECT'	=> 'Может изменять заголовок',
+	// 'ACL_F_NOT_CHANGE_SUBJECT'	=> 'Может изменять заголовок',
 ));

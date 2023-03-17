@@ -118,7 +118,7 @@ class listener implements EventSubscriberInterface
 	{
 		return array(
 			'core.user_setup'					=>	'load_language_on_setup',
-			'core.acp_log_add_new_mode'			=>  'add_register_log_info',
+			'core.acp_logs_info_modify_modes'	=>	'add_register_log_info', // @since 3.2.1-RC1
 			'core.ucp_register_data_before'		=>	'try_register_log',
 			'core.add_log'						=>	'add_type_register_log',
 			'core.delete_log'					=>	'delete_type_register_log',
@@ -145,11 +145,12 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	* Add a new log mode / modify $modes
+	* Event to add or modify ACP log modulemodes
 	*
-	* @event core.acp_log_add_new_mode
-	* @var	array	modes		Array with modes
-	*
+	* @event core.acp_logs_info_modify_modes
+	* @var	array	modes	Array with modes info
+	* @since 3.1.11-RC1
+	* @since 3.2.1-RC1
 	*/
 	public function add_register_log_info($event)
 	{

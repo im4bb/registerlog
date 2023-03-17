@@ -2,18 +2,18 @@ services:
     borisba.registerlog.listener:
         class: borisba\registerlog\event\listener
         arguments:
-            - @auth
-            - @config
-            - @template
-            - @user
-            - @dbal.conn
-            - @ext.manager
-            - @request
-            - @content.visibility
-            - @cache
-            - @plupload
-            - @mimetype.guesser
-            - %core.root_path%
-            - %core.php_ext%
+            - '@auth'
+            - '@config'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '@ext.manager'
+            - '@request'
+            - '@content.visibility'
+            - '@cache'
+            - '@plupload'
+            - '@mimetype.guesser'
+            - '%core.root_path%'
+            - '%core.php_ext%'
         tags:
             - { name: event.listener }

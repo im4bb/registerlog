@@ -11,7 +11,7 @@ namespace borisba\registerlog\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-define('LOG_REGISTER', 4);
+define('LOG_REGISTER', 6);
 
 /**
 * Event listener

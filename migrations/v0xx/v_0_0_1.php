@@ -73,12 +73,12 @@ class v_0_0_1 extends \phpbb\db\migration\migration
 
 			// Add permissions
 			array('permission.add', array('a_registerlog', true)),
-			array('permission.add', array('f_not_change_subject', false)),
+			// array('permission.add', array('f_not_change_subject', false)),
 
 			// Set permissions
 			array('permission.permission_set', array('ROLE_ADMIN_FULL', 'a_registerlog')),
 			array('permission.permission_set', array('ROLE_ADMIN_STANDARD', 'a_registerlog')),
-			array('permission.permission_set', array('ROLE_FORUM_FULL', 'f_not_change_subject')),
+			// array('permission.permission_set', array('ROLE_FORUM_FULL', 'f_not_change_subject')),
 		);
 	}
 }

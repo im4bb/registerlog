@@ -18,93 +18,30 @@ define('LOG_REGISTER', 6);
 */
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\auth\auth */
-	protected $auth;
-
 	/** @var \phpbb\config\config */
 	protected $config;
-
-	/** @var \phpbb\template\template */
-	protected $template;
 
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var \phpbb\db\driver\driver_interface */
-	protected $db;
-
-	/** @var \phpbb\extension\manager */
-	protected $phpbb_extension_manager;
-
 	/** @var \phpbb\request\request */
 	protected $request;
-
-	/** @var \phpbb\content_visibility */
-	protected $phpbb_content_visibility;
-
-	/** @var \phpbb\cache\service */
-	protected $cache;
-
-	/** @var \phpbb\plupload\plupload */
-	protected $plupload;
-
-	/** @var \phpbb\mimetype\guesser */
-	protected $mimetype_guesser;
-
-	/** @var string */
-	protected $phpbb_root_path;
-	protected $php_ext;
-
-	/*function put_log($line)
-	{
-		//printf("put_log\n");
-		//$root_path = 'c:/Inetpub/phpBB3.asc/';
-      $log_file = $this->phpbb_root_path . 'cache/debug_register_logs.log';
-
-      $ff = @fopen($log_file, 'ab+');
-      if ($ff !== false)
-      {
-         @fwrite($ff, $line . "\n");
-      }
-      @fclose($ff);
-
-	}*/
-
-
 
 	/**
 	* Constructor
 	* 
-	* @param \phpbb\auth\auth $auth
 	* @param \phpbb\config\config $config
-	* @param \phpbb\template\template $template
 	* @param \phpbb\user $user
-	* @param \phpbb\db\driver\driver $db
-	* @param \phpbb\extension\manager $phpbb_extension_manager
 	* @param \phpbb\request\request $request
-	* @param \phpbb\content_visibility $phpbb_content_visibility
-	* @param \phpbb\cache\service $cache
-	* @param \phpbb\plupload\plupload $plupload
-	* @param \phpbb\mimetype\guesser $mimetype_guesser
-	* @param string $phpbb_root_path Root path
-	* @param string $phpbb_ext
 	*/
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, \phpbb\extension\manager $phpbb_extension_manager, \phpbb\request\request $request, \phpbb\content_visibility $phpbb_content_visibility, \phpbb\cache\service $cache, \phpbb\plupload\plupload $plupload, \phpbb\mimetype\guesser $mimetype_guesser, $phpbb_root_path, $php_ext)
+	public function __construct(
+		\phpbb\config\config $config,
+		\phpbb\user $user,
+		\phpbb\request\request $request)
 	{
-		$this->auth = $auth;
 		$this->config = $config;
-		$this->template = $template;
 		$this->user = $user;
-		$this->db = $db;
-		$this->phpbb_extension_manager = $phpbb_extension_manager;
 		$this->request = $request;
-		$this->phpbb_content_visibility = $phpbb_content_visibility;
-		$this->cache = $cache;
-		$this->plupload = $plupload;
-		$this->mimetype_guesser = $mimetype_guesser;
-		$this->phpbb_root_path = $phpbb_root_path;
-		$this->php_ext = $php_ext;
-		$this->files_uploaded = false;
 	}
 
 	/**

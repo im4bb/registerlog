@@ -269,7 +269,9 @@ class listener implements EventSubscriberInterface
 		{
 			add_log('register',
 				$qa->solved ? 'REGISTER_TEXT_CONFIRM_SOLVED' : 'REGISTER_TEXT_CONFIRM_NOT_SOLVED',
-				$qa->question_text, $qa->answer);
+				$qa->question_text, $qa->answer,
+				$this->user->data['session_id']
+			);
 		}
 	}
 

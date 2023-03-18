@@ -119,7 +119,13 @@ class listener implements EventSubscriberInterface
 		return array(
 			'core.user_setup'					=>	'load_language_on_setup', // needed for define LOG_REGISTER
 			'core.acp_logs_info_modify_modes'	=>	'add_register_log_info', // @since 3.2.1-RC1
-			'core.ucp_register_data_before'		=>	'try_register_log',
+			// 'core.ucp_register_requests_after' => '' // @since 3.1.11-RC1
+			// 'core.ucp_register_agreement_modify_template_data' // @since 3.2.2-RC1
+			'core.ucp_register_data_before'		=>	'try_register_log', // @since 3.1.4-RC1 // Попытка регистрации пользователя
+			// 'core.ucp_register_data_after'
+			'core.ucp_register_modify_template_data' => 'ucp_register_modify_template_data', // Запротоколировать ошибки регистрации
+			'core.ucp_register_register_after'	 => 'ucp_register_register_after', // Пользователь успешно зарегистрирован
+
 			'core.add_log'						=>	'add_type_register_log',
 			'core.delete_log'					=>	'delete_type_register_log',
 			'core.get_logs_modify_type'			=>	'get_logs_register_log',
@@ -153,6 +159,67 @@ class listener implements EventSubscriberInterface
 		));
 		$event['modes'] = $modes;
 	}
+
+	/**
+	* Modify template data on the registration page
+	*
+	* @event core.ucp_register_modify_template_data
+	* @var	array	template_vars		Array with template data
+	* @var	array	data				Array with user data, read only
+	* @var	array	error				Array with errors
+	* @var	array	s_hidden_fields		Array with hidden field elements
+	* @var	string	tpl_name			Template name
+	* @since 3.2.2-RC1
+	*/
+	public function ucp_register_modify_template_data($event) // Ошибки при регистрации пользователя
+	{
+		global $phpbb_log; // TODO: Constructor
+		$error = $event['error'];
+		if ($this->config['enable_register_log'] && sizeof($error)) { // && submit
+			$user_id = (empty($this->user->data)) ? ANONYMOUS : $this->user->data['user_id'];
+			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
+			$phpbb_log->add('register', $user_id, $user_ip, 'REGISTER_ERROR', time(), array(
+				$event['data']['username'], $event['data']['email'], 0, $this->config['max_reg_attempts'],
+				time() - abs($this->request->variable('creation_time', 0)),
+				implode('<li>', $error), $this->user->data['session_id'],
+			));
+		}
+	}
+
+	/**
+	* Perform additional actions after user registration
+	*
+	* @event core.ucp_register_register_after
+	* @var	array		user_row	Array with user registration data
+	* @var	array		cp_data		Array with custom profile fields data
+	* @var	array		data		Array with current ucp registration data
+	* @var	string		message		Message to be displayed to the user after registration
+	* @var	string		server_url	Server URL
+	* @var	int			user_id		New user ID
+	* @var	string		user_actkey	User activation key
+	* @since 3.2.4-RC1
+	*/
+	public function ucp_register_register_after($event) // Пользователь успешно зарегистрирован
+	{
+		global $phpbb_log; // TODO: Constructor
+		if ($this->config['enable_register_log']) {
+
+			// COPPA Ignored
+			if ($this->config['require_activation'] == USER_ACTIVATION_SELF && $this->config['email_enable'])
+				$log_operation = 'REGISTER_SUCSESS_INACTIVE';
+			else if ($this->config['require_activation'] == USER_ACTIVATION_ADMIN && $this->config['email_enable'])
+				$log_operation = 'REGISTER_SUCSESS_INACTIVE_ADMIN';
+			else $log_operation = 'REGISTER_SUCSESS';
+
+			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
+			$phpbb_log->add('register', $event['user_id'], $user_ip, $log_operation, time(), array(
+				0, $this->config['max_reg_attempts'],
+				time() - abs($this->request->variable('creation_time', 0)),
+				$this->user->data['session_id'],
+			));
+		}
+	}
+
 	/**
 	* Add UCP register data before they are assigned to the template or submitted
 	*

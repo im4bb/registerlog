@@ -392,7 +392,7 @@ class qa
 	function validate()
 	{
 		global $config, $db, $user, $phpbb_dispatcher;
-		
+
 		/**
 		* Add custom validation code
 		*
@@ -418,14 +418,15 @@ class qa
 			'return_val'
 		);
 		extract($phpbb_dispatcher->trigger_event('core.plugins_qa_validate', compact($vars)));
-		
+
 		if ($trap)
 		{
 			if (strlen($error) == 0)
+			{
 				return $return_val;
+			}
 			return $error;
 		}
-		
 
 		if (!sizeof($this->question_ids))
 		{
@@ -607,7 +608,6 @@ class qa
 
 		$answer = ($this->question_strict) ? $request->variable('qa_answer', '', true) : utf8_clean_string($request->variable('qa_answer', '', true));
 
-
 		/**
 		* Add logging answer
 		*
@@ -618,13 +618,12 @@ class qa
 		*
 		* @var	object qa	-> $this
 		*/
-		
+
 		$qa = $this;
 
 		$vars = array('answer', 'qa');
 		extract($phpbb_dispatcher->trigger_event('core.plugins_qa_answer', compact($vars)));
 
-		
 		$sql = 'SELECT answer_text
 			FROM ' . $this->table_captcha_answers . '
 			WHERE question_id = ' . (int) $this->question;

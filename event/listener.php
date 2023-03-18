@@ -117,12 +117,13 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'					=>	'load_language_on_setup',
+			'core.user_setup'					=>	'load_language_on_setup', // needed for define LOG_REGISTER
 			'core.acp_logs_info_modify_modes'	=>	'add_register_log_info', // @since 3.2.1-RC1
 			'core.ucp_register_data_before'		=>	'try_register_log',
 			'core.add_log'						=>	'add_type_register_log',
 			'core.delete_log'					=>	'delete_type_register_log',
 			'core.get_logs_modify_type'			=>	'get_logs_register_log',
+
 			'core.plugins_qa_validate'			=>	'qa_validate',
 			'core.plugins_qa_answer'			=>  'qa_answer',
 		);
@@ -134,15 +135,7 @@ class listener implements EventSubscriberInterface
 	* @return null
 	* @access public
 	*/
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'borisba/registerlog',
-			'lang_set' => 'registerlog',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
-	}
+	public function load_language_on_setup($event) {}
 
 	/**
 	* Event to add or modify ACP log modulemodes

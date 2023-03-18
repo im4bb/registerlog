@@ -73,7 +73,7 @@ class listener implements EventSubscriberInterface
 			'core.delete_log'					=>	'delete_type_register_log',
 			'core.get_logs_modify_type'			=>	'get_logs_register_log',
 
-			'core.plugins_qa_validate'			=>	'qa_validate',
+			// 'core.plugins_qa_validate'		=>	'qa_validate',
 			'core.plugins_qa_answer'			=>  'qa_answer',
 		);
 	}
@@ -364,14 +364,13 @@ class listener implements EventSubscriberInterface
 	public function qa_answer($event)
 	{
 		$qa = $event['qa'];
-		$answer = $event['answer'];
 
-// Register LOG  Start -->
 		if ($this->config['enable_register_log'])
 		{
-			add_log('register', 'REGISTER_TEXT_CONFIRM', $qa->question_text, $answer);
+			add_log('register',
+				$qa->solved ? 'REGISTER_TEXT_CONFIRM_SOLVED' : 'REGISTER_TEXT_CONFIRM_NOT_SOLVED',
+				$qa->question_text, $qa->answer);
 		}
-//-->Register LOG  End
 	}
 
 }

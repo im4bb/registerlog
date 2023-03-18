@@ -46,8 +46,8 @@ $lang = array_merge($lang, array(
 	'REGISTER_SUCSESS_INACTIVE' => 'Пользователь успешно зарегистрирован с %1$d-ой попытки из %2$d через %3$ds после генерации формы, требуется самостоятельная активация<br />» %4$s',
 	'REGISTER_SUCSESS_INACTIVE_ADMIN' => 'Пользователь <b>%s</b> успешно зарегистрирован с %1$d-ой попытки из %2$d через %3$ds после генерации формы, требуется активация администратором<br />» %4$s',
 	'REGISTER_TEXT_CONFIRM'	=> 'На вопрос «%1$s» пользователь ответил «%2$s»', // TODEL
-	'REGISTER_TEXT_CONFIRM_SOLVED' => 'На вопрос «%1$s?» пользователь <strong>верно</strong> ответил «%2$s»<br />» %3$s',
-	'REGISTER_TEXT_CONFIRM_NOT_SOLVED' => 'На вопрос «%1$s?» пользователь <strong>неверно</strong> ответил «%2$s»<br />» %3$s',
+	'REGISTER_TEXT_CONFIRM_SOLVED' => 'На вопрос «%1$s?» пользователь <strong>верно</strong> ответил «%2$s» (попытка %3$d/%4$d)<br />» %5$s',
+	'REGISTER_TEXT_CONFIRM_NOT_SOLVED' => 'На вопрос «%1$s?» пользователь <strong>неверно</strong> ответил «%2$s» (попытка %3$d/%4$d)<br />» %5$s',
 	'REGISTER_ERROR'		=> 'Ошибки при регистрации пользователя «%1$s» (%2$s), попытка %3$d/%4$d через %5$ds после генерации формы: <ul><li>%6$s</ul> » %7$s',
 
 	'REGISTER_LOG_ENABLE'	=>  'Включить ведение логов регистрации',

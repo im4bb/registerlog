@@ -27,21 +27,27 @@ class listener implements EventSubscriberInterface
 	/** @var \phpbb\request\request */
 	protected $request;
 
+	/** @var \phpbb\log\log */
+	protected $phpbb_log;
+
 	/**
 	* Constructor
 	* 
 	* @param \phpbb\config\config $config
 	* @param \phpbb\user $user
 	* @param \phpbb\request\request $request
+	* @param \phpbb\log\log $log
 	*/
 	public function __construct(
 		\phpbb\config\config $config,
 		\phpbb\user $user,
-		\phpbb\request\request $request)
+		\phpbb\request\request $request,
+		\phpbb\log\log $phpbb_log)
 	{
 		$this->config = $config;
 		$this->user = $user;
 		$this->request = $request;
+		$this->phpbb_log = $phpbb_log;
 	}
 
 	/**
@@ -110,12 +116,11 @@ class listener implements EventSubscriberInterface
 	*/
 	public function ucp_register_modify_template_data($event) // Ошибки при регистрации пользователя
 	{
-		global $phpbb_log; // TODO: Constructor
 		$error = $event['error'];
 		if ($this->config['enable_register_log'] && sizeof($error)) { // && submit
 			$user_id = (empty($this->user->data)) ? ANONYMOUS : $this->user->data['user_id'];
 			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
-			$phpbb_log->add('register', $user_id, $user_ip, 'REGISTER_ERROR', time(), array(
+			$this->phpbb_log->add('register', $user_id, $user_ip, 'REGISTER_ERROR', time(), array(
 				$event['data']['username'], $event['data']['email'], 0, $this->config['max_reg_attempts'],
 				time() - abs($this->request->variable('creation_time', 0)),
 				implode('<li>', $error), $this->user->data['session_id'],
@@ -138,7 +143,6 @@ class listener implements EventSubscriberInterface
 	*/
 	public function ucp_register_register_after($event) // Пользователь успешно зарегистрирован
 	{
-		global $phpbb_log; // TODO: Constructor
 		if ($this->config['enable_register_log']) {
 
 			// COPPA Ignored
@@ -149,7 +153,7 @@ class listener implements EventSubscriberInterface
 			else $log_operation = 'REGISTER_SUCSESS';
 
 			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
-			$phpbb_log->add('register', $event['user_id'], $user_ip, $log_operation, time(), array(
+			$this->phpbb_log->add('register', $event['user_id'], $user_ip, $log_operation, time(), array(
 				0, $this->config['max_reg_attempts'],
 				time() - abs($this->request->variable('creation_time', 0)),
 				$this->user->data['session_id'],

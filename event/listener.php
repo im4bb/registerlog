@@ -64,7 +64,7 @@ class listener implements EventSubscriberInterface
 			'core.acp_logs_info_modify_modes'	=>	'add_register_log_info', // @since 3.2.1-RC1
 			// 'core.ucp_register_requests_after' => '' // @since 3.1.11-RC1
 			// 'core.ucp_register_agreement_modify_template_data' // @since 3.2.2-RC1
-			'core.ucp_register_data_before'		=>	'try_register_log', // @since 3.1.4-RC1 // Попытка регистрации пользователя
+			// 'core.ucp_register_data_before'	=>	'try_register_log', // @since 3.1.4-RC1 // Попытка регистрации пользователя
 			// 'core.ucp_register_data_after'
 			'core.ucp_register_modify_template_data' => 'ucp_register_modify_template_data', // Запротоколировать ошибки регистрации
 			'core.ucp_register_register_after'	 => 'ucp_register_register_after', // Пользователь успешно зарегистрирован
@@ -158,30 +158,6 @@ class listener implements EventSubscriberInterface
 				time() - abs($this->request->variable('creation_time', 0)),
 				$this->user->data['session_id'],
 			));
-		}
-	}
-
-	/**
-	* Add UCP register data before they are assigned to the template or submitted
-	*
-	* To assign data to the template, use $template->assign_vars()
-	*
-	* @event core.ucp_register_data_before
-	* @var	bool	submit		Do we display the form only
-	*							or did the user press submit
-	* @var	array	data		Array with current ucp registration data
-	* @since 3.1.4-RC1
-	*/
-	public function try_register_log($event)
-	{
-		$submit = $event['submit'];
-		if ($submit)
-		{
-			if ($this->config['enable_register_log'])
-			{
-				$username = $this->request->variable('username', '', true);
-				add_log('register', 'REGISTER_TRACE', $username);
-			}
 		}
 	}
 

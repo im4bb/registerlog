@@ -11,10 +11,11 @@ jobs:
     if: (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))
     runs-on: ubuntu-latest
     env:
-        PHPBB_BRANCH: 3.3.x                     # phpBB Branch
-        EXTNAME: borisba/registerlog            # CHANGE name of the extension HERE
-        SNIFF: 1                                # Should we run code sniffer on your code?
-        EPV: 1                                  # Should we run EPV (Extension Pre Validator) on your code?
+      PHP_VERSION: 7.1
+      PHPBB_BRANCH: 3.3.x                     # phpBB Branch
+      EXTNAME: borisba/registerlog            # CHANGE name of the extension HERE
+      SNIFF: 1                                # Should we run code sniffer on your code?
+      EPV: 1                                  # Should we run EPV (Extension Pre Validator) on your code?
 
     steps:
     - name: Actions Checkout
@@ -24,9 +25,17 @@ jobs:
       run: |
           mkdir --parents ../tmp
           cp -R . ../tmp
+
     - name: Actions Setup - Clone phpBB
       run: |
           git clone --depth=1 https://github.com/phpbb/phpbb.git phpBB3 --branch=$PHPBB_BRANCH
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, mysqli, sqlite, pdo_sqlite, intl, gd, exif, iconv, sqlsrv, pdo_sqlsrv, ldap
+        coverage: none
 
     - name: Actions Setup - Composer Install/Remove/Require
       run: |

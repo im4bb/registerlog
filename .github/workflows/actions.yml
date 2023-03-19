@@ -56,6 +56,7 @@ jobs:
       run: .github/ext-sniff.sh "$EXTNAME" "$NOTESTS"
 
     - name: Actions Test - Code Sniffer
+      working-directory: phpBB3
       run: >-
         phpBB/vendor/bin/phpcs -s --extensions=php --standard=build/code_sniffer/ruleset-php-extensions.xml
         "--ignore=*/$EXTNAME/tests/*,*/$EXTNAME/vendor/*" "phpBB/ext/$EXTNAME"; fi

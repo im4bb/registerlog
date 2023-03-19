@@ -18,14 +18,14 @@ jobs:
 
     steps:
     - name: Checkout phpBB
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: phpbb/phpbb
         ref: ${{ env.PHPBB_BRANCH }}
         path: phpBB3
 
     - name: Checkout extension
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: phpBB3/phpBB/ext/${{ env.EXTNAME }}
 
@@ -69,4 +69,4 @@ jobs:
     - name: Actions Test - EPV (Extension Pre Validator)
       if: ${{ env.EPV != 0 }}
       working-directory: phpBB3
-      run: phpBB/vendor/bin/EPV.php run --dir="phpBB/ext/$EXTNAME/"
+      run: phpBB/vendor/bin/EPV.php run --dir="phpBB/ext/$EXTNAME"

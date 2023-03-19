@@ -59,7 +59,7 @@ jobs:
       working-directory: phpBB3
       run: >-
         phpBB/vendor/bin/phpcs -s --extensions=php --standard=build/code_sniffer/ruleset-php-extensions.xml
-        "--ignore=*/$EXTNAME/tests/*,*/$EXTNAME/vendor/*" "phpBB/ext/$EXTNAME"; fi
+        "--ignore=*/$EXTNAME/tests/*,*/$EXTNAME/vendor/*" "phpBB/ext/$EXTNAME"
 
     - name: Setup EPV
       if: ${{ env.EPV != 0 }}

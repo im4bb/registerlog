@@ -32,7 +32,7 @@ class listener implements EventSubscriberInterface
 
 	/**
 	* Constructor
-	* 
+	*
 	* @param \phpbb\config\config $config
 	* @param \phpbb\user $user
 	* @param \phpbb\request\request $request
@@ -84,7 +84,9 @@ class listener implements EventSubscriberInterface
 	* @return null
 	* @access public
 	*/
-	public function load_language_on_setup($event) {}
+	public function load_language_on_setup($event)
+	{
+	}
 
 	/**
 	* Event to add or modify ACP log modulemodes
@@ -117,7 +119,8 @@ class listener implements EventSubscriberInterface
 	public function ucp_register_modify_template_data($event) // Ошибки при регистрации пользователя
 	{
 		$error = $event['error'];
-		if ($this->config['enable_register_log'] && sizeof($error)) { // && submit
+		if ($this->config['enable_register_log'] && sizeof($error)) // && submit
+		{
 			$user_id = (empty($this->user->data)) ? ANONYMOUS : $this->user->data['user_id'];
 			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
 			$this->phpbb_log->add('register', $user_id, $user_ip, 'REGISTER_ERROR', time(), array(
@@ -143,14 +146,23 @@ class listener implements EventSubscriberInterface
 	*/
 	public function ucp_register_register_after($event) // Пользователь успешно зарегистрирован
 	{
-		if ($this->config['enable_register_log']) {
-
+		if ($this->config['enable_register_log'])
+		{
 			// COPPA Ignored
-			if ($this->config['require_activation'] == USER_ACTIVATION_SELF && $this->config['email_enable'])
+			if ($this->config['email_enable']
+				&& $this->config['require_activation'] == USER_ACTIVATION_SELF)
+			{
 				$log_operation = 'REGISTER_SUCSESS_INACTIVE';
-			else if ($this->config['require_activation'] == USER_ACTIVATION_ADMIN && $this->config['email_enable'])
+			}
+			else if ($this->config['email_enable']
+				&& $this->config['require_activation'] == USER_ACTIVATION_ADMIN)
+			{
 				$log_operation = 'REGISTER_SUCSESS_INACTIVE_ADMIN';
-			else $log_operation = 'REGISTER_SUCSESS';
+			}
+			else
+			{
+				$log_operation = 'REGISTER_SUCSESS';
+			}
 
 			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
 			$this->phpbb_log->add('register', $event['user_id'], $user_ip, $log_operation, time(), array(

@@ -40,7 +40,9 @@ jobs:
     - name: Actions Test - Code Sniffer
       run: |
           cd phpBB3
-          sh -c "if [ '$SNIFF' != '0' ]; then phpBB/vendor/bin/phpcs -s --extensions=php --standard=build/code_sniffer/ruleset-php-extensions.xml "--ignore=*/$EXTNAME/tests/*" "--ignore=*/$EXTNAME/vendor/*" "phpBB/ext/$EXTNAME"; fi"
+          sh -c "if [ '$SNIFF' != '0' ];
+            then phpBB/vendor/bin/phpcs -s --extensions=php --standard=build/code_sniffer/ruleset-php-extensions.xml "--ignore=*/$EXTNAME/tests/*" "--ignore=*/$EXTNAME/vendor/*" "phpBB/ext/$EXTNAME"; fi
+          "
     - name: Actions Test - EPV (Extension Pre Validator)
       run: |
           cd phpBB3

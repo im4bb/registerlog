@@ -2,46 +2,10 @@
 
 This is the repository for the development of the phpBB RegisterLog Extension.
 
+[![Actions CI](https://github.com/im4bb/registerlog/actions/workflows/actions.yml/badge.svg?branch=vm)](https://github.com/im4bb/registerlog/actions/workflows/actions.yml)
 [![Build Status](https://travis-ci.org/borisba/registerlog.svg?branch=master)](https://travis-ci.org/borisba/registerlog)
 
-
 ## Before Install
-
-**Use phpBB 3.1.4**
-
-1. File **includes\acp\info\acp_logs.php**
-  1. Find *function module() { ... }*
-  2. Replace it to
-	
-	```ruby
- 	function module()
-	{
-		global  $phpbb_dispatcher;
-		$modes = array(
-				'admin'		=> array('title' => 'ACP_ADMIN_LOGS', 'auth' => 'acl_a_viewlogs', 'cat' => array('ACP_FORUM_LOGS')),
-				'mod'		=> array('title' => 'ACP_MOD_LOGS', 'auth' => 'acl_a_viewlogs', 'cat' => array('ACP_FORUM_LOGS')),
-				'users'		=> array('title' => 'ACP_USERS_LOGS', 'auth' => 'acl_a_viewlogs', 'cat' => array('ACP_FORUM_LOGS')),
-				'critical'	=> array('title' => 'ACP_CRITICAL_LOGS', 'auth' => 'acl_a_viewlogs', 'cat' => array('ACP_FORUM_LOGS')),
-				);
-		
-		/**
-		* Add a new log mode / modify $modes
-		*
-		* @event core.acp_log_add_new_mode
-		* @var	array	modes		Array with modes
-		*
-		*/
-		$vars = array('modes');
-		extract($phpbb_dispatcher->trigger_event('core.acp_log_add_new_mode', compact($vars)));
-		
-		return array(
-			'filename'	=> 'acp_logs',
-			'title'		=> 'ACP_LOGGING',
-			'version'	=> '1.0.0',
-			'modes'		=> $modes,
-		);
-	}
-	```
 
 2. File **phpbb\captcha\plugins\qa.php** replace to **qa_replace/qa.php**
   1. Don't copy *qa-replace* directory to */ext/borisba/registerlog* !

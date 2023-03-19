@@ -149,11 +149,20 @@ class listener implements EventSubscriberInterface
 		if ($this->config['enable_register_log'])
 		{
 			// COPPA Ignored
-			if ($this->config['require_activation'] == USER_ACTIVATION_SELF && $this->config['email_enable'])
-				{ $log_operation = 'REGISTER_SUCSESS_INACTIVE'; }
-			else if ($this->config['require_activation'] == USER_ACTIVATION_ADMIN && $this->config['email_enable'])
-				{ $log_operation = 'REGISTER_SUCSESS_INACTIVE_ADMIN'; }
-			else { $log_operation = 'REGISTER_SUCSESS'; }
+			if ($this->config['email_enable']
+				&& $this->config['require_activation'] == USER_ACTIVATION_SELF)
+			{
+				$log_operation = 'REGISTER_SUCSESS_INACTIVE';
+			}
+			else if ($this->config['email_enable']
+				&& $this->config['require_activation'] == USER_ACTIVATION_ADMIN)
+			{
+				$log_operation = 'REGISTER_SUCSESS_INACTIVE_ADMIN';
+			}
+			else
+			{
+				$log_operation = 'REGISTER_SUCSESS';
+			}
 
 			$user_ip = (empty($this->user->ip)) ? '' : $this->user->ip;
 			$this->phpbb_log->add('register', $event['user_id'], $user_ip, $log_operation, time(), array(

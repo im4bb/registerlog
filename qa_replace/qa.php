@@ -415,7 +415,7 @@ class qa
 			'trap',
 			'qa',
 			'error',
-			'return_val'
+			'return_val',
 		);
 		extract($phpbb_dispatcher->trigger_event('core.plugins_qa_validate', compact($vars)));
 

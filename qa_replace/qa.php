@@ -399,11 +399,11 @@ class qa
 		* To assign data to the template, use $template->assign_vars()
 		*
 		* @event core.plugins_qa_validate
-		* @var	bool	trap	Need set 'true' for custom validate
-		*
-		* @var	object qa	-> $this
-		* @var	string    error      Error message
-		* @var          bool       return_val    Return value
+		* @var	bool	trap		Need set 'true' for custom validate
+		* @var	object	qa			-> $this
+		* @var	string	error		Error message
+		* @var	bool	return_val	Return value
+		* @since 3.2.2-RC1
 		*/
 
 		$error = '';
@@ -611,12 +611,9 @@ class qa
 		/**
 		* Add logging answer
 		*
-		* To assign data to the template, use $template->assign_vars()
-		*
 		* @event core.plugins_qa_answer
-		* @var	string   answer
-		*
-		* @var	object qa	-> $this
+		* @var	string	answer	Answer text
+		* @var	object	qa		-> $this
 		*/
 
 		$qa = $this;
